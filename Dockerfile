@@ -46,4 +46,5 @@ RUN curl -L https://github.com/protobuf-c/protobuf-c/releases/download/v1.3.3/pr
     && ./configure \
     && make \
     && make install \
+    && ldconfig \
     && rm -rf /tmp/protobuf-c-1.3.3
