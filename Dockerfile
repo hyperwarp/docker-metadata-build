@@ -18,7 +18,7 @@ FROM ubuntu:focal
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get upgrade -y \
-    && apt-get -y install --no-install-recommends build-essential pkg-config zip unzip cmake autoconf automake libtool curl make g++ ca-certificates
+    && apt-get -y install --no-install-recommends build-essential pkg-config zip unzip cmake autoconf automake libtool curl make g++ ca-certificates git
 
 # Install FoundationDB
 RUN curl -L https://www.foundationdb.org/downloads/6.2.22/ubuntu/installers/foundationdb-clients_6.2.22-1_amd64.deb -o /tmp/foundationdb-clients_6.2.22-1_amd64.deb \
@@ -48,3 +48,13 @@ RUN curl -L https://github.com/protobuf-c/protobuf-c/releases/download/v1.3.3/pr
     && make install \
     && ldconfig \
     && rm -rf /tmp/protobuf-c-1.3.3
+
+RUN git clone -b v20.07 --depth 1 https://github.com/spdk/spdk /tmp/spdk \
+    && cd /tmp/spdk \
+    && git submodule update --init \
+    && ./scripts/pkgdep.sh --all \
+    && ./configure --with-rdma --with-shared \
+    && make \
+    && make install \
+    && cd ./isa-l && make install && cd .. \
+    && ldconfig -v -n ./dpdk/build-tmp/lib ./build/lib
