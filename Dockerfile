@@ -56,5 +56,6 @@ RUN git clone -b v20.07 --depth 1 https://github.com/spdk/spdk /tmp/spdk \
     && ./configure --with-rdma --with-shared \
     && make \
     && make install \
-    && cd ./isa-l && make install && cd .. \
-    && ldconfig -v -n ./dpdk/build-tmp/lib ./build/lib
+    && cd ./isa-l && make -f Makefile.unx && make -f Makefile.unx install && cd .. \
+    && echo "/tmp/spdk/dpdk/build-tmp/lib" > /etc/ld.so.conf.d/dpdk.conf \
+    && ldconfig -v
