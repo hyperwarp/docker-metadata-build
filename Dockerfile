@@ -58,4 +58,5 @@ RUN git clone -b v20.07 --depth 1 https://github.com/spdk/spdk /tmp/spdk \
     && make install \
     && cd ./isa-l && make -f Makefile.unx && make -f Makefile.unx install && cd .. \
     && echo "/tmp/spdk/dpdk/build-tmp/lib" > /etc/ld.so.conf.d/dpdk.conf \
+    && echo "/tmp/spdk/dpdk/build-tmp/drivers" >> /etc/ld.so.conf.d/dpdk.conf \
     && ldconfig -v
