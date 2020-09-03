@@ -1,3 +1,3 @@
-# Hyperwarp Build Metadata
+# Hyperwarp Development Container
 
-This repo contains a Docker image for building hyperwarp-metadata.
+This repo contains a Docker image for developing and building hyperwarp.
