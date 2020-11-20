@@ -18,7 +18,7 @@ FROM ubuntu:focal
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get upgrade -y \
-    && apt-get -y install --no-install-recommends build-essential pkg-config zip unzip cmake autoconf automake libtool curl make g++ ca-certificates git
+    && apt-get -y install --no-install-recommends build-essential pkg-config zip unzip cmake autoconf automake libtool curl make g++ ca-certificates git gdb
 
 # Install FoundationDB
 RUN curl -L https://www.foundationdb.org/downloads/6.2.27/ubuntu/installers/foundationdb-clients_6.2.27-1_amd64.deb -o /tmp/foundationdb-clients_6.2.27-1_amd64.deb \
